@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title></title>
+<style type="text/css">
+/*<![CDATA[*/
+
+.move {
+  position:absolute;visibility:hidden;left:300px;
+}
+
+/*]]>*/
+</style><script type="text/javascript">
+/*<![CDATA[*/
+
+ function Animate(id,mde,f,t,ms){
+  var obj=document.getElementById(id);
+  if (obj&&typeof(f)=='number'&&typeof(t)=='number'&&(mde=='top'||mde=='left')){
+   obj.style.visibility='visible';
+   animate(obj,mde,f,t,new Date(),ms||1000)
+  }
+ }
+
+ function animate(obj,mde,f,t,srt,mS){
+  var ms=new Date().getTime()-srt,now=(t-f)/mS*ms+f;
+  if (isFinite(now)){
+   obj.style[mde]=now+'px';
+  }
+  if (ms<mS){
+   setTimeout(function(){ animate(obj,mde,f,t,srt,mS); },10);
+  }
+  else {
+   obj.style[mde]=t+'px';
+  }
+ }
+
+
+/*]]>*/
+</script></head>
+
+<body>
+<img id="m1" class="move" src="http://www.vicsjavascripts.org.uk/StdImages/One.gif" width="50" height="50" />
+<img id="m2" class="move" src="http://www.vicsjavascripts.org.uk/StdImages/Two.gif" width="50" height="50" />
+<img id="m3" class="move" src="http://www.vicsjavascripts.org.uk/StdImages/Three.gif" width="50" height="50" />
+
+<script type="text/javascript">
+/*<![CDATA[*/
+Animate('m1','top',600,200,1000);
+Animate('m2','top',0,700,500);
+setTimeout(function(){
+  Animate('m3','top',0,700,1500);
+  Animate('m3','left',0,700,1500);
+ },2000);
+/*]]>*/
+</script>
+</body>
+
+</html>
